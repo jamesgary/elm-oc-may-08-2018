@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js – The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+    <style>
+      .container { display: flex; }
+      .col { flex: 1; }
+
+      .reveal pre {
+        font-size: 0.5em;
+      }
+    </style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Elm OC</h1>
+					<h3>Welcome!</h3>
+					<p>
+						<small>Sponsored by <a href="http://sendgrid.com">SendGrid</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Schedule</h2>
+          <ul>
+            <li>7:00-7:15: Elm Syntax and TEA</li>
+            <li>7:15-8:00: Live Coding a Meetup Search Page</li>
+            <li>8:00-9:00: Hacking</li>
+          </ul>
+				</section>
+
+				<section>
+					<h2>Code of Conduct</h2>
+          <ul>
+            <li>Help us build a pleasant, productive, and fearless community</li>
+            <li>Be kind and collaborative</li>
+            <li>OK to make mistakes and learn</li>
+          </ul>
+				</section>
+
+				<section>
+          <div class="container">
+            <div class="col" style="text-align: left;">
+              <h3>Syntax</h3>
+              <ul>
+                <li>Strings</li>
+                <li>Numbers</li>
+                <li>If/Else</li>
+                <li>Functions</li>
+                <li>Lists</li>
+                <li>Tuples</li>
+                <li>Records</li>
+                <li>Type Aliases</li>
+                <li>Union Types and <br/>Case Statements</li>
+              </ul>
+            </div>
+            <div class="col" style="text-align: left;">
+              <h3>TEA (The Elm Architecture)</h3>
+              <ul>
+                <li>Model</li>
+                <li>View</li>
+                <li>Update</li>
+              </ul>
+            </div>
+          </div>
+				</section>
+
+				<section>
+					<h2>Strings</h2>
+					<pre><code class="hljs elm">
+> "taco"
+"taco" : String
+
+> "taco" ++ " tuesday"
+"taco tuesday" : String
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Numbers</h2>
+					<pre><code class="hljs elm">
+> 42
+42 : number
+
+> 3.14
+3.14 : Float
+
+> 2 + 3 * 4
+14 : number
+
+> (2 + 3) * 4
+20 : number
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>If/Else</h2>
+					<pre><code class="hljs elm">
+> True
+True : Bool
+
+> False
+False : Bool
+
+> 2 + 2 == 4
+True : Bool
+
+> if 1 < 2 then "Sounds good" else "What?"
+"Sounds good" : String
+					</code></pre>
+				</section>
+
+				<section>
+          <h2>Variables and <br> Type Annotation</h2>
+					<pre><code class="hljs elm">
+-- in the repl
+> food = "taco"
+"taco" : String
+
+-- in a file
+food : String
+food = "taco"
+
+tacoWeight : Float
+tacoWeight = 0.13
+
+tacoCount : Int
+tacoCount = 50
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Functions</h2>
+					<pre><code class="hljs elm">
+-- in the repl
+> isNegative num = num < 0
+&lt;function&gt; : number -> Bool
+
+> isNegative 3
+False : Bool
+
+-- in a file
+isNegative : number -> Bool
+isNegative num =
+  num < 0
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Functions (Cont'd)</h2>
+					<pre><code class="hljs elm">
+add : number -> number -> number
+add num1 num2 =
+  num1 + num2
+
+greetings : String -> number -> String
+greetings name age =
+  "I'm " ++ name ++ ", and I'm " ++ toString age ++ " years old!"
+
+-- repl
+> greetings "Dorris" 100
+"I'm Dorris, and I'm 100 years old!"
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Lists</h2>
+					<pre><code class="hljs elm">
+words : List String
+words =
+  [ "Hello", "Hola", "Bonjour" ]
+
+louden : String -> String
+louden word =
+  word ++ "!"
+
+-- repl
+> List.map louden words
+[ "Hello!", "Hola!", "Bonjour!" ] : List String
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Tuples</h2>
+					<pre><code class="hljs elm">
+nameAge : (String, Int)
+nameAge =
+  ("Dorris", 100)
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Records</h2>
+					<pre><code class="hljs elm">
+type alias Point =
+  { id : Int
+  , x : Float
+  , y : Float
+  }
+
+-- these are equivalent
+point = { id = 123, x = 3, y = 4 }
+point = Point 123 3 4
+
+-- repl
+> point.x
+3 : Float
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Type Aliases</h2>
+					<pre><code class="hljs elm">
+type alias Person = String
+
+type alias Id = Int
+
+myFunc : Person -> Id -> String
+myFunc person id =
+  ...
+					</code></pre>
+        </section>
+
+				<section>
+          <h2>Union Types and <br/>Case Statements</h2>
+					<pre><code class="hljs elm">
+type Pet
+  = Dog
+  | Cat
+  | Fish
+
+petGreeting : Pet -> String
+petGreeting pet =
+  case pet of
+    Dog ->
+      "Woof!"
+
+    Cat ->
+      "Meow."
+
+    Fish ->
+      "Blub blub?"
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>The Elm Architecture</h3>
+          <img src="./pic.png">
+				</section>
+
+				<section>
+					<h3>The Elm Architecture</h3>
+					<pre><code class="hljs elm">
+main =
+  { model = model,
+  , view = view -- model -> html
+  , update = update -- msg -> model -> model
+  }
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Model and View</h3>
+					<pre><code class="hljs elm">
+type alias Model = Int
+
+model : Model
+model =
+  0
+
+view : Model -> Html Msg
+view model =
+  p [] [ text (toString model) ]
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Update</h3>
+					<pre><code class="hljs elm">
+type Msg
+  = Increment
+  | Decrement
+
+update : Msg -> Model -> Model
+update msg model =
+  case msg of
+    Increment ->
+      model + 1
+
+    Decrement ->
+      model - 1
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>View (Revisited)</h3>
+					<pre><code class="hljs elm">
+view : Model -> Html Msg
+view model =
+  div []
+    [ p [] [ text (toString model) ]
+    , button [ onClick Increment ] [ text "+" ]
+    , button [ onClick Decrement ] [ text "-" ]
+    ]
+					</code></pre>
+				</section>
+
+				<section>
+					<h1>Live coding!</h1>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+      var y = document.querySelectorAll("pre code");
+      for(var i = 0; i < y.length; i++) {
+        y[i].innerHTML = y[i].innerHTML
+          .replace(new RegExp(/^\n/), '')
+          .replace(new RegExp(/\n.*$/), '');
+      }
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.pack.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/search/search.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
